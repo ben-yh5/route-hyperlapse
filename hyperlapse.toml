@@ -1,0 +1,48 @@
+# Route Hyperlapse defaults. Secrets go in .env (MAPILLARY_TOKEN, OSRM_URL).
+
+[app]
+host = "127.0.0.1"
+port = 8000
+open_browser = true
+cache_dir = "~/.cache/hyperlapse"
+clear_cache_on_quit = true
+style_url = "https://tiles.openfreemap.org/styles/liberty"
+
+[defaults]
+duration_s = 60
+min_spacing_m = 20
+output_fps = 30
+width = 1280
+height = 720
+include_pano = true
+blend = true
+normalize_colour = false
+drive_on_left = false
+
+[selection]
+radius_m = 25
+retry_radius_m = 40
+max_heading_error_deg = 35
+# Alternates shown in the Inspector, and the larger pool the chooser picks from
+top_k = 5
+pool_k = 15
+# Candidate score weights (lower score is better)
+w_distance = 1.0
+w_heading = 1.0
+w_quality = 0.5
+w_age = 2.0
+w_wrong_side = 0.6
+w_wrong_direction = 1.5
+# Viterbi transition weights
+t_sequence_change = 3.5
+t_time_gap = 1.5
+t_camera_change = 2.0
+t_backwards = 1.5
+t_duplicate = 3.0
+# Optional mean-luminance floor (0-255); 0 disables
+min_luminance = 0
+
+[network]
+concurrency = 16
+nominatim_user_agent = "route-hyperlapse/0.1 (local app)"
+tile_ttl_days = 30

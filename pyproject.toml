@@ -1,0 +1,40 @@
+[project]
+name = "hyperlapse"
+version = "0.1.0"
+description = "Route hyperlapse generator from Mapillary imagery"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.29",
+    "sse-starlette>=2.0",
+    "python-dotenv>=1.0",
+    "httpx>=0.27",
+    "tenacity>=8.2",
+    "shapely>=2.0",
+    "pyproj>=3.6",
+    "mercantile>=1.2",
+    "mapbox-vector-tile>=2.0",
+    "numpy>=1.26",
+    "scipy>=1.11",
+    "pillow>=10.1",
+    "py360convert>=0.1",
+    "gpxpy>=1.6",
+    "python-multipart>=0.0.9",
+]
+
+[project.scripts]
+hyperlapse = "hyperlapse.__main__:main"
+
+[dependency-groups]
+dev = ["pytest>=8", "respx>=0.21", "pytest-asyncio>=0.23", "playwright>=1.44"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["hyperlapse"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
